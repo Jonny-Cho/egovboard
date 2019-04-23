@@ -45,6 +45,9 @@ if (request.getProtocol().equals("HTTP/1.1"))
 			min-width: 100%;
 			height: 300px;
 		}
+		nav#paging {
+			text-align: center;
+		}
     </style>
 </head>
 <body>

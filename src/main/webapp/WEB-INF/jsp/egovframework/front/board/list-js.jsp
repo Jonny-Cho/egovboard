@@ -2,11 +2,12 @@
 
 <script type="text/javascript">
 $(function(){
-    var tb = $("#tableTarget");
+	var tableTarget = $('#tableTarget')
     $.ajax({
         url: '/board',
-        type: 'get',
-        contentType: 'application/json; charset=utf8',
+        type: 'GET',
+        data: `page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}`,
+        contentType: 'application/x-www-form-urlencoded; charset=utf8',
         dataType: 'json'
     })
     .done(function(board){
@@ -34,7 +35,7 @@ $(function(){
             newTbody.append(newTr);
         }
         // table에 tbody넣기
-        tb.append(newTbody);
+        tableTarget.append(newTbody);
         
         moveToContent();
     })
@@ -45,7 +46,7 @@ $(function(){
     function moveToContent (){
         $('#tbodyTarget').delegate("tr", "click", function(){
         	var bid = $(this).find('#bid').text();
-        	location.href = '/list/' + bid;
+        	location.href = '/list/' + bid + '?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
         });
     }
 });

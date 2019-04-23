@@ -19,6 +19,6 @@
 	</div>
 
 	<a id="btnUpdate" class="btn btn-default">수정하기</a>
-	<a class="btn btn-default" href="/list/${bid}" role="button">취소</a>
+	<a id="btnCancel" class="btn btn-default" role="button">취소</a>
 	<a id="btnDelete" class="btn btn-default">삭제하기</a>
 </div>

@@ -17,6 +17,8 @@ package egovframework.example.sample.controller;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,38 +26,58 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import egovframework.example.sample.domain.PageCriteria;
+import egovframework.example.sample.domain.PageMaker;
+import egovframework.example.sample.service.BoardService;
+
 @Controller
 public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
+	@Resource(name = "boardService")
+	private BoardService boardService;
+	
 	@GetMapping("/list")
-    public String boardList(Model model) throws IOException{
+    public String boardList(PageCriteria pageCriteria, Model model) throws IOException{
 		logger.info("boardList()");
 		model.addAttribute("strTitle", "게시글 목록");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setPageCriteria(pageCriteria);
+		pageMaker.setTotalCount(boardService.selectBoardListCount());
+		
+		model.addAttribute("pageMaker", pageMaker);
+		logger.info(pageMaker.toString());
+		
         return "board/list.page";
     }
-	
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 	@GetMapping("/list/{bid}")
-	public String boardDetail(@PathVariable String bid, Model model) throws IOException {
+	public String boardDetail(@PathVariable String bid, PageCriteria pageCriteria, Model model) throws IOException {
 		logger.info("BoardDetail()");
 		model.addAttribute("bid", bid);
 		model.addAttribute("strTitle", "게시글 상세");
+		
+		model.addAttribute("pageCriteria", pageCriteria);
+		
 		return "board/content.page";
 	}
 	
 	@GetMapping("/write")
-	public String writeBoard(Model model) throws IOException {
+	public String writeBoard(PageCriteria pageCriteria, Model model) throws IOException {
 		logger.info("writeBoard()");
 		model.addAttribute("strTitle", "글쓰기");
+		model.addAttribute("pageCriteria", pageCriteria);
 		return "board/write.page";
 	}
 	
 	@GetMapping("/update/{bid}")
-	public String updateBoard(@PathVariable String bid, Model model) throws IOException {
+	public String updateBoard(@PathVariable String bid, PageCriteria pageCriteria, Model model) throws IOException {
 		logger.info("updateBoard(), bid = " + bid);
 		model.addAttribute("bid", bid);
 		model.addAttribute("strTitle", "수정하기");
+		model.addAttribute("pageCriteria", pageCriteria);
 		return "board/update.page";
 	}
 	

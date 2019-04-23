@@ -31,5 +31,10 @@ $(function(){
 			});
 		}
 	});
+	
+    // 취소 버튼
+    $('#btnCancel').click(function(){
+    	location.href = '/list?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
+    });
 });
 </script>

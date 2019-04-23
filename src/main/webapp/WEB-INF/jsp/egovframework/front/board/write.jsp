@@ -16,5 +16,5 @@
 	</div>
 
 	<a id="btnPost" class="btn btn-default">글쓰기</a>
-	<a class="btn btn-default" href="/list" role="button">취소</a>
+	<a id="btnCancel" class="btn btn-default" role="button">취소</a>
 </div>

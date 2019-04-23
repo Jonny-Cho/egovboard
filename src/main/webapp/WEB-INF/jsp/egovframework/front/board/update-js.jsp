@@ -3,18 +3,16 @@
 
 <script>
     $(function(){
-        var tb = $("#tableTarget");
         // 내용 표시
         $.ajax({
             url: '/board/${bid}',
-            type: 'get',
+            type: 'GET',
             contentType: 'application/json; charset=utf8',
             dataType: 'json'
         })
         .done(function(board){
             $('#bUsername').val(board.data.busername);
             $('#bTitle').val(board.data.btitle);
-            
             var str = board.data.bcontent;
             var regex = /<br\s*[\/]?>/gi;
             $('#bContent').html(str.replace(regex, "\n"));
@@ -47,7 +45,7 @@
 		        })
 		        .done(function(){
 		        	alert('수정이 완료되었습니다');
-		        	location.href='/list/${bid}';
+		        	location.href='/list/${bid}?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
 		        })
 		        .fail(function(){
 		        	alert('수정에 실패했습니다');
@@ -65,12 +63,17 @@
             })
             .done(function(data){
                 alert('삭제되었습니다');
-                location.href='/list';
+                location.href='/list?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
             })
             .fail(function(){
                 alert('삭제에 실패했습니다. 게시판 목록으로 이동합니다');
-                location.href='/list';
+                location.href='/list?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
             }); // ajax end
 		});
+        
+        // 취소 버튼
+        $('#btnCancel').click(function(){
+        	location.href = '/list/${bid}?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
+        });
     });
 </script>
