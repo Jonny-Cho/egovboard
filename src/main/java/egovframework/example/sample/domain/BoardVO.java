@@ -1,6 +1,6 @@
 package egovframework.example.sample.domain;
 
-public class Board {
+public class BoardVO extends PageVO{
 	
 	private String bid;
 	private String busername;
@@ -34,7 +34,9 @@ public class Board {
 	
 	@Override
 	public String toString() {
-		return "Board [bid=" + bid + ", busername=" + busername + ", btitle=" + btitle + ", bcontent=" + bcontent + "]";
+		return "BoardVO [bid=" + bid + ", busername=" + busername + ", btitle=" + btitle + ", bcontent=" + bcontent
+				+ ", getPage()=" + getPage() + ", getPerPageNum()=" + getPerPageNum() + ", getKeyword()=" + getKeyword()
+				+ "]";
 	}
 	
 }

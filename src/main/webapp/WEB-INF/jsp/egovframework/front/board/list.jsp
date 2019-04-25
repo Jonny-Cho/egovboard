@@ -2,41 +2,33 @@
 <%@ taglib prefix="c"     uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="container">
-    <table id="tableTarget" class="table">
+	
+	<form id="formTarget" class="form-horizontal">
+		<div class="form-group col-sm-9">
+			<input type="text" class="form-control" id="keyword">
+		</div>
+		<div class="form-group col-sm-3">
+			<input id="btnSearch" type="submit" value="검색" class="form-control">
+		</div>
+	</form>
+	
+    <table class="table">
         <thead>
             <tr>
-                <th>번호</th>
-                <th>작성자</th>
-                <th>제목</th>
+                <th width="20%">번호</th>
+                <th width="40%">작성자</th>
+                <th width="40%">제목</th>
+                <!-- <th>생성일</th> -->
             </tr>
         </thead>
+        <tbody id="tbodyTarget">
+        </tbody>
     </table>
     
-    <a class="btn btn-default" href="/write?page=${pageMaker.pageCriteria.page}&perPageNum=${pageMaker.pageCriteria.perPageNum}" role="button">글쓰기</a>
-
+    <a class="btn btn-default" href="/write" role="button">글쓰기</a>
+	
 	<nav aria-label="Page navigation" id="paging">
 		<ul class="pagination">
-			<c:if test="${pageMaker.prev}">
-				<li>
-					<a href="/list?page=${pageMaker.startPage - 1}&perPageNum=${pageMaker.pageCriteria.perPageNum}" aria-label="Previous">
-					  <span aria-hidden="true">&laquo;</span>
-					</a>
-				</li>
-			</c:if>
-			
-			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-				<li <c:out value="${pageMaker.pageCriteria.page == idx ? 'class = active' : ''}"/> >
-					<a href="/list?page=${idx}&perPageNum=${pageMaker.pageCriteria.perPageNum}">${idx}</a>
-				</li>
-			</c:forEach>
-			
-			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li>
-					<a href="/list?page=${pageMaker.endPage + 1}&perPageNum=${pageMaker.pageCriteria.perPageNum}" aria-label="Next">
-					  <span aria-hidden="true">&raquo;</span>
-					</a>
-				</li>
-			</c:if>
 		</ul>
 	</nav>
 	

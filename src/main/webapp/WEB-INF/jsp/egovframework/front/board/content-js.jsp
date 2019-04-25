@@ -3,6 +3,10 @@
 
 <script>
     $(function(){
+    	
+    	console.log('boardVO = ', '${boardVO}');
+    	console.log('page = ', '${boardVO.getPage()}');
+    	
         $.ajax({
             url: '/board/${bid}',
             type: 'get',
@@ -24,15 +28,14 @@
             location.href = '/list?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
         }); // ajax end
         
-        
         // 수정/삭제하기 버튼
         $('#btnUpdate').click(function(){
-        	location.href = '/update/${bid}?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
+        	location.href = '/update/${bid}?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
         });
         
         // 게시판 목록 버튼
         $('#btnList').click(function(){
-        	location.href = '/list?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
+        	location.href = '/list?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
         });
     });
 </script>

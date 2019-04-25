@@ -45,8 +45,11 @@ if (request.getProtocol().equals("HTTP/1.1"))
 			min-width: 100%;
 			height: 300px;
 		}
-		nav#paging {
+		nav#paging, #formTarget {
 			text-align: center;
+		}
+		.pagination a {
+			cursor: pointer;
 		}
     </style>
 </head>

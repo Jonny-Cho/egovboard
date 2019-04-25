@@ -2,20 +2,20 @@ package egovframework.example.sample.service;
 
 import java.io.IOException;
 
-import egovframework.example.sample.domain.Board;
-import egovframework.example.sample.domain.PageCriteria;
+import egovframework.example.sample.domain.BoardVO;
+import egovframework.example.sample.domain.PageVO;
 
 public interface BoardService {
 	
-	public int selectBoardListCount() throws NumberFormatException, IOException;
+	public int selectBoardListCount(PageVO pageVO) throws NumberFormatException, IOException;
 	
-	public String selectBoardList(PageCriteria pageCriteria) throws IOException;
+	public String selectBoardList(PageVO pageVO) throws IOException;
 	
 	public String selectBoardDetail(String bid) throws IOException;
 	
-	public String insertBoard(Board board) throws IOException;
+	public String insertBoard(BoardVO boardVO) throws IOException;
 	
-	public String updateBoard(Board board) throws IOException;
+	public String updateBoard(BoardVO boardVO) throws IOException;
 	
 	public String deleteBoard(String bid) throws IOException;
 	

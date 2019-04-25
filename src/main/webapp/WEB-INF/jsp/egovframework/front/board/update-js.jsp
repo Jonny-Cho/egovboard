@@ -45,7 +45,7 @@
 		        })
 		        .done(function(){
 		        	alert('수정이 완료되었습니다');
-		        	location.href='/list/${bid}?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
+		        	location.href='/list/${bid}?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
 		        })
 		        .fail(function(){
 		        	alert('수정에 실패했습니다');
@@ -63,17 +63,18 @@
             })
             .done(function(data){
                 alert('삭제되었습니다');
-                location.href='/list?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
             })
             .fail(function(){
                 alert('삭제에 실패했습니다. 게시판 목록으로 이동합니다');
-                location.href='/list?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
+            })
+            .always(function(){
+                location.href='/list?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
             }); // ajax end
 		});
         
         // 취소 버튼
         $('#btnCancel').click(function(){
-        	location.href = '/list/${bid}?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
+        	location.href = '/list/${bid}?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
         });
     });
 </script>

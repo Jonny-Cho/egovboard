@@ -34,7 +34,7 @@ $(function(){
 	
     // 취소 버튼
     $('#btnCancel').click(function(){
-    	location.href = '/list?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
+    	location.href = '/list?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
     });
 });
 </script>
