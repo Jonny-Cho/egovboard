@@ -193,6 +193,7 @@ $(function(){
     // default values
     $('#keyword').val('${boardVO.getKeyword()}');
     '${boardVO.getStartDate()}' === '' ? $('#searchDate').val('') : $('#searchDate').val('${boardVO.getStartDate()} ~ ${boardVO.getEndDate()}');
+    $('#searchOption').val('${boardVO.getSearchOption()}');
     
     setFormData();
 	getContents();

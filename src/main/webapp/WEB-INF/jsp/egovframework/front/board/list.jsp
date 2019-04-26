@@ -15,7 +15,6 @@
 			<input type="text" class="form-control" id="keyword" placeholder="검색어 입력"/>
 		</div>
 		<div class="form-group col-sm-3">
-			<!-- <label for="searchDate">날짜 검색</label> -->
 			<input type="text" 
 				class="form-control datepicker-here"
 				id="searchDate"
@@ -24,6 +23,7 @@
 				data-multiple-dates-separator=" ~ "
 				data-language="en"
 				data-date-format="yyyy-mm-dd"
+				readonly
 				/>
 		</div>
 		<div class="form-group col-sm-3">
