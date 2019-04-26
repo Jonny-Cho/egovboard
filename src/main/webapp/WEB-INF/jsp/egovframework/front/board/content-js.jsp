@@ -4,8 +4,7 @@
 <script>
     $(function(){
     	
-    	console.log('boardVO = ', '${boardVO}');
-    	console.log('page = ', '${boardVO.getPage()}');
+    	var parameters = '?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&searchOption=${boardVO.getSearchOption()}&keyword=${boardVO.getKeyword()}&startDate=${boardVO.getStartDate()}&endDate=${boardVO.getEndDate()}';
     	
         $.ajax({
             url: '/board/${bid}',
@@ -16,7 +15,7 @@
         .done(function(board){
         	if(board.data === null || board.data.deletestatus === 'Y'){
 				alert('해당 게시글이 없습니다');
-				location.href = '/list?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
+				location.href = '/list'+parameters;
         	} else {
 	            $('#busername').text(board.data.busername);
 	            $('#btitle').text(board.data.btitle);
@@ -25,17 +24,17 @@
         })
         .fail(function(){
             alert('데이터 요청에 실패했습니다');
-            location.href = '/list?page=${pageCriteria.page}&perPageNum=${pageCriteria.perPageNum}';
+            location.href = '/list' + parameters;
         }); // ajax end
         
         // 수정/삭제하기 버튼
         $('#btnUpdate').click(function(){
-        	location.href = '/update/${bid}?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
+        	location.href = '/update/${bid}' + parameters;
         });
         
         // 게시판 목록 버튼
         $('#btnList').click(function(){
-        	location.href = '/list?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
+        	location.href = '/list' + parameters;
         });
     });
 </script>

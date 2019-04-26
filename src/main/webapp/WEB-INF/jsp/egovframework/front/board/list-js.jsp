@@ -2,13 +2,6 @@
 
 <script type="text/javascript">
 $(function(){
-    
-	console.log('${boardVO.getPage()}');
-	console.log('${boardVO.getPerPageNum()}');
-	console.log('${boardVO.getKeyword()}' === '');
-	console.log('${boardVO.getKeyword()}');
-	
-	$('#keyword').val('${boardVO.getKeyword()}');
 	
 	var page = '${boardVO.getPage()}';
 	var perPageNum = '${boardVO.getPerPageNum()}';
@@ -18,18 +11,17 @@ $(function(){
 	var prev = false;
 	var next = true;
 	var displayPageNum = 10;
+	var searchOption = '${boardVO.getSearchOption()}';
 	
-	// functionalization
-	function getContents(keyword){
-		
-		if(keyword === undefined){
-			keyword = '';
-		}
+	var startDate = '${boardVO.getStartDate()}';
+	var endDate = '${boardVO.getEndDate()}';
+	
+	function getContents(){
 		
 		$.ajax({
 	        url: '/board',
 	        type: 'GET',
-	        data: 'page='+page+'&perPageNum='+perPageNum+'&keyword='+keyword,
+	        data: 'page='+page+'&perPageNum='+perPageNum+'&searchOption='+searchOption+'&keyword='+keyword+'&startDate='+startDate+'&endDate='+endDate,
 	        contentType: 'application/x-www-form-urlencoded; charset=utf8',
 	        dataType: 'json'
 	    })
@@ -47,15 +39,15 @@ $(function(){
 	            tdBid.id = 'bid';
 	            var tdBusername = document.createElement('td');
 	            var tdBtitle = document.createElement('td');
-	            //var tdCreatedate = document.createElement('td');
+	            var tdCreatedate = document.createElement('td');
 	            
 	            tdBid.textContent = board.data[i].bid;
 	            tdBusername.textContent = board.data[i].busername;
 	            tdBtitle.textContent = board.data[i].btitle;
-	            //tdCreatedate.textContent = board.data[i].createdate;
+	            tdCreatedate.textContent = board.data[i].createdate.split('.')[0].replace('T', ' ');
 	            
 	            // tr에 td넣기
-	            newTr.append(tdBid, tdBusername, tdBtitle);
+	            newTr.append(tdBid, tdBusername, tdBtitle, tdCreatedate);
 	            // tbody에 tr넣기
 	            tbodyTarget.append(newTr);
 	        }
@@ -70,20 +62,16 @@ $(function(){
     function moveToContent (){
         $('#tbodyTarget').delegate("tr", "click", function(){
         	var bid = $(this).find('#bid').text();
-        	location.href = '/list/' + bid + '?page=' + page + '&perPageNum=' + perPageNum + '&keyword=' + keyword;
+        	location.href = '/list/' + bid + '?page=' + page + '&perPageNum=' + perPageNum + '&searchOption=' + searchOption + '&keyword=' + keyword + '&startDate=' + startDate + '&endDate=' + endDate;
         });
     }
     
-    function getPagination(keyword){
-		
-		if(keyword === undefined){
-			keyword = '';
-		}
+    function getPagination(){
 		
 		$.ajax({
     		url: '/countTotalBoard',
     		method: 'GET',
-    		data: 'keyword='+keyword,
+    		data: 'searchOption='+searchOption+'&keyword='+keyword+'&startDate='+startDate+'&endDate='+endDate,
     		contentType: 'application/x-www-form-urlencoded; charset=utf8',
     		dataType: 'text'
     	})
@@ -145,26 +133,23 @@ $(function(){
     	});
     }
     
-    // 검색 -> 데이타 총 갯수 -> 페이지네이션
-    getContents(keyword);
-    getPagination(keyword);
-    
     $('#btnSearch').click(function(e){
     	e.preventDefault();
     	
     	page = 1;
-    	keyword = $('#keyword').val();
-    	getContents(keyword);
-    	getPagination(keyword);
+
+    	setFormData();
+    	getContents();
+    	getPagination();
     });
     
     function movePage(){
 	    $('.pagination a.num').click(function(){
 	    	page = $(this).text();
 	    	
-	    	keyword = $('#keyword').val();
-	    	getContents(keyword);
-	    	getPagination(keyword);
+	    	setFormData();
+	    	getContents();
+	    	getPagination();
 	    });
     }
     
@@ -172,9 +157,9 @@ $(function(){
     	$('#next').click(function(){
 	    	page = endPage + 1;
 	    	
-	    	keyword = $('#keyword').val();
-	    	getContents(keyword);
-	    	getPagination(keyword);
+	    	setFormData();
+	    	getContents();
+	    	getPagination();
     	})
     }
     
@@ -182,11 +167,41 @@ $(function(){
     	$('#prev').click(function(){
 	    	page = startPage - 1;
 	    	
-	    	keyword = $('#keyword').val();
-	    	getContents(keyword);
-	    	getPagination(keyword);
+	    	setFormData();
+	    	getContents();
+	    	getPagination();
     	})
     }
+    
+    function setFormData(){
+    	searchOption = $('#searchOption').val();
+    	
+    	var arrSearchDate = $('#searchDate').val().split(' ~ ');
+    	startDate = arrSearchDate[0];
+     	arrSearchDate[1] === undefined ? endDate = startDate : endDate = arrSearchDate[1];
+     	
+    	keyword = $('#keyword').val();
+    }
+    
+    // datepicker
+     $('#searchDate').datepicker({
+    	language: 'en',
+    	autoClose: true,
+    	todayButton: new Date()
+    })
+    
+    // default values
+    $('#keyword').val('${boardVO.getKeyword()}');
+    '${boardVO.getStartDate()}' === '' ? $('#searchDate').val('') : $('#searchDate').val('${boardVO.getStartDate()} ~ ${boardVO.getEndDate()}');
+    
+    setFormData();
+	getContents();
+    getPagination();
+
+    
+    $('#btnWrite').click(function(){
+    	location.href = '/write?page=' + page + '&perPageNum=' + perPageNum + '&searchOption=' + searchOption + '&keyword=' + keyword + '&startDate=' + startDate + '&endDate=' + endDate;
+    });
     
 });
 </script>

@@ -15,14 +15,15 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public int selectBoardListCount(PageVO pageVO) throws NumberFormatException, IOException {
-		System.out.println(pageVO.toString());
-		return Integer.parseInt(HttpUtil.get("http://localhost:8080/selectBoardListCount?keyword="+pageVO.getKeyword()));
+		String url = MessageFormat.format("http://localhost:8080/selectBoardListCount?searchOption={0}&keyword={1}&startDate={2}&endDate={3}"
+				, new Object[] { pageVO.getSearchOption(), pageVO.getKeyword(), pageVO.getStartDate(), pageVO.getEndDate() });
+		return Integer.parseInt(HttpUtil.get(url));
 	}
 	
 	@Override
 	public String selectBoardList(PageVO pageVO) throws IOException {
-		String url = MessageFormat.format("http://localhost:8080/board?page={0}&perPageNum={1}&keyword={2}"
-				, new Object[] { pageVO.getPage() , pageVO.getPerPageNum() , pageVO.getKeyword() });
+		String url = MessageFormat.format("http://localhost:8080/board?page={0}&perPageNum={1}&searchOption={2}&keyword={3}&startDate={4}&endDate={5}"
+				, new Object[] { pageVO.getPage() , pageVO.getPerPageNum() , pageVO.getSearchOption(), pageVO.getKeyword(), pageVO.getStartDate(), pageVO.getEndDate() });
 		return HttpUtil.get(url);
 	}
 	

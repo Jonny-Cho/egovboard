@@ -14,6 +14,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title><c:out value="${strTitle}" /></title>
 	<link type="text/css" rel="stylesheet" href="<c:url value='/front/bootstrap-3.3.7-dist/css/bootstrap.min.css'/>"/>
+	<link type="text/css" rel="stylesheet" href="<c:url value='/front/airdatepicker-dist/css/datepicker.css'/>"/>
     <style>
 		html {
 			position: relative;
@@ -60,7 +61,9 @@ if (request.getProtocol().equals("HTTP/1.1"))
     
 	<script src="<c:url value='/front/js/jquery3.4.0.js'/>"></script>
 	<script src="<c:url value='/front/bootstrap-3.3.7-dist/js/bootstrap.min.js'/>"></script>
-
+	<script src="<c:url value='/front/airdatepicker-dist/js/datepicker.js'/>"></script>
+	<script src="<c:url value='/front/airdatepicker-dist/js/i18n/datepicker.en.js'/>"></script>
+	
     <!-- *-js.jsp -->
     <tiles:insertAttribute name="body-js"/>
 </body>

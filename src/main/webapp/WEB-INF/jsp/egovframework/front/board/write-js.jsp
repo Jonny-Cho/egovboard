@@ -3,6 +3,9 @@
 
 <script>
 $(function(){
+	
+	var parameters = '?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&searchOption=${boardVO.getSearchOption()}&keyword=${boardVO.getKeyword()}&startDate=${boardVO.getStartDate()}&endDate=${boardVO.getEndDate()}';
+	
 	$('#btnPost').click(function(){
 		var busername = $('#bUsername').val();
 		var btitle = $('#bTitle').val();
@@ -34,7 +37,7 @@ $(function(){
 	
     // 취소 버튼
     $('#btnCancel').click(function(){
-    	location.href = '/list?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
+    	location.href = '/list' + parameters;
     });
 });
 </script>

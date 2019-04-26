@@ -3,6 +3,9 @@
 
 <script>
     $(function(){
+    	
+    	var parameters = '?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&searchOption=${boardVO.getSearchOption()}&keyword=${boardVO.getKeyword()}&startDate=${boardVO.getStartDate()}&endDate=${boardVO.getEndDate()}';
+    	
         // 내용 표시
         $.ajax({
             url: '/board/${bid}',
@@ -45,7 +48,7 @@
 		        })
 		        .done(function(){
 		        	alert('수정이 완료되었습니다');
-		        	location.href='/list/${bid}?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
+		        	location.href='/list/${bid}' + parameters;
 		        })
 		        .fail(function(){
 		        	alert('수정에 실패했습니다');
@@ -68,13 +71,13 @@
                 alert('삭제에 실패했습니다. 게시판 목록으로 이동합니다');
             })
             .always(function(){
-                location.href='/list?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
+                location.href='/list' + parameters;
             }); // ajax end
 		});
         
         // 취소 버튼
         $('#btnCancel').click(function(){
-        	location.href = '/list/${bid}?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&keyword=${boardVO.getKeyword()}';
+        	location.href = '/list/${bid}' + parameters;
         });
     });
 </script>

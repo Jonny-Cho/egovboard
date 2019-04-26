@@ -3,7 +3,10 @@ package egovframework.example.sample.domain;
 public class PageVO {
 	private int page = 1;
 	private int perPageNum = 20;
+	private String searchOption;
 	private String keyword;
+	private String startDate;
+	private String endDate;
 	
 	public int getPage() {
 		return page;
@@ -36,10 +39,28 @@ public class PageVO {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+	public String getSearchOption() {
+		return searchOption;
+	}
+	public void setSearchOption(String searchOption) {
+		this.searchOption = searchOption;
+	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 	
 	@Override
 	public String toString() {
-		return "PageVO [page=" + page + ", perPageNum=" + perPageNum + ", keyword=" + keyword + "]";
+		return "PageVO [page=" + page + ", perPageNum=" + perPageNum + ", searchOption=" + searchOption + ", keyword="
+				+ keyword + ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
-	
 }

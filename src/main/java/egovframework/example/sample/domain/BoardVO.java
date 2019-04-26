@@ -36,7 +36,8 @@ public class BoardVO extends PageVO{
 	public String toString() {
 		return "BoardVO [bid=" + bid + ", busername=" + busername + ", btitle=" + btitle + ", bcontent=" + bcontent
 				+ ", getPage()=" + getPage() + ", getPerPageNum()=" + getPerPageNum() + ", getKeyword()=" + getKeyword()
-				+ "]";
+				+ ", getSearchOption()=" + getSearchOption() + ", getStartDate()=" + getStartDate() + ", getEndDate()="
+				+ getEndDate() + "]";
 	}
 	
 }
