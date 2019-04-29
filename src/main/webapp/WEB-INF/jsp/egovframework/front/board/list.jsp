@@ -3,8 +3,8 @@
 
 <div class="container">
 	
-	<form id="formTarget" class="form-horizontal">
-		<div class="form-group col-sm-3">
+	<form id="formTarget" class="form-horizontal low">
+		<div class="form-group col-sm-2">
 			<select class="form-control" id="searchOption">
 				<option value="username">작성자</option>
 				<option value="title">제목</option>
@@ -17,16 +17,24 @@
 		<div class="form-group col-sm-3">
 			<input type="text" 
 				class="form-control datepicker-here"
-				id="searchDate"
+				id="startDate"
 				placeholder="날짜 검색"
-				data-range="true"
-				data-multiple-dates-separator=" ~ "
 				data-language="en"
 				data-date-format="yyyy-mm-dd"
 				readonly
 				/>
 		</div>
 		<div class="form-group col-sm-3">
+			<input type="text" 
+				class="form-control datepicker-here"
+				id="endDate"
+				placeholder="날짜 검색"
+				data-language="en"
+				data-date-format="yyyy-mm-dd"
+				readonly
+				/>
+		</div>
+		<div class="form-group col-sm-2">
 			<input id="btnSearch" type="submit" value="검색" class="form-control" />
 		</div>
 	</form>
@@ -35,9 +43,9 @@
         <thead>
             <tr>
                 <th width="10%">번호</th>
-                <th width="30%">작성자</th>
-                <th width="30%">제목</th>
-                <th width="30%">생성일</th>
+                <th width="20%">작성자</th>
+                <th width="50%">제목</th>
+                <th width="20%">생성일</th>
             </tr>
         </thead>
         <tbody id="tbodyTarget">

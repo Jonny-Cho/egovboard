@@ -27,12 +27,19 @@ if (request.getProtocol().equals("HTTP/1.1"))
         #main > .container {
         	padding-bottom: 3rem;
         }
-        #footer{
+        #header *{
+        	background-color: rgba(70, 70, 70, 1);
+            color: rgba(230, 230, 230, 1);
+        }
+        #header {
+        	padding-bottom: 1.8rem;
+        }
+        #footer {
         	width: 100%;
             height: 60px;
             text-align: center;
             background-color: rgba(70, 70, 70, 1);
-            color: rgba(200, 200, 200, 1);
+            color: rgba(230, 230, 230, 1);
             position:absolute;
             bottom: 0;
             padding-top: 1.8rem;
@@ -50,6 +57,10 @@ if (request.getProtocol().equals("HTTP/1.1"))
 			text-align: center;
 		}
 		.pagination a {
+			cursor: pointer;
+		}
+		#startDate, #endDate{
+			background-color:white;
 			cursor: pointer;
 		}
     </style>

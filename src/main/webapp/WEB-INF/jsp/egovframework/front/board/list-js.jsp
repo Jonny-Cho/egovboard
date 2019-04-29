@@ -176,33 +176,77 @@ $(function(){
     function setFormData(){
     	searchOption = $('#searchOption').val();
     	
-    	var arrSearchDate = $('#searchDate').val().split(' ~ ');
-    	startDate = arrSearchDate[0];
-     	arrSearchDate[1] === undefined ? endDate = startDate : endDate = arrSearchDate[1];
-     	
+    	startDate = $('#startDate').val();
+    	$('#endDate').val() === '' ? endDate = new Date().yyyymmdd() : endDate = $('#endDate').val();
+
     	keyword = $('#keyword').val();
     }
-    
+
     // datepicker
-     $('#searchDate').datepicker({
+     $('.datepicker-here').datepicker({
     	language: 'en',
+    	clearButton: true,
+    	todayButton: new Date(),
     	autoClose: true,
-    	todayButton: new Date()
+    	maxDate: new Date()
     })
     
-    // default values
-    $('#keyword').val('${boardVO.getKeyword()}');
-    '${boardVO.getStartDate()}' === '' ? $('#searchDate').val('') : $('#searchDate').val('${boardVO.getStartDate()} ~ ${boardVO.getEndDate()}');
-    $('#searchOption').val('${boardVO.getSearchOption()}');
+    $('#startDate').datepicker({
+    	onHide: function(dp, animationCompleted){
+    		if (!animationCompleted){
+    			if($('#startDate').val() !== ''){
+	    			startDate = $('#startDate').val()
+	    			setEndDate(startDate);
+    			}
+    		}
+    	}
+    })
     
-    setFormData();
-	getContents();
-    getPagination();
+    function setEndDate(startDate){
+		$('#endDate').datepicker({
+			minDate: new Date(startDate)
+	    })
+    }
 
+    $('#endDate').datepicker({
+    	onHide: function(dp, animationCompleted){
+    		if (!animationCompleted){
+    			if($('#endDate').val() !== ''){
+	    			endDate = $('#endDate').val()
+	    			setStartDate(endDate);
+    			}
+    		}
+    	}
+    })
     
+    function setStartDate(endDate){
+    	$('#startDate').datepicker({
+    		maxDate: new Date(endDate)
+    	})
+    }
+    
+	Date.prototype.yyyymmdd = function() {
+		var mm = this.getMonth() + 1; // getMonth() is zero-based
+		var dd = this.getDate();
+		
+		return [this.getFullYear(),
+		        (mm>9 ? '' : '0') + mm,
+		        (dd>9 ? '' : '0') + dd
+		       ].join('-');
+	};
+    
+    // default values
+    '${boardVO.getSearchOption()}'=== '' ? $('#searchOption').val('all') : $('#searchOption').val('${boardVO.getSearchOption()}');
+    $('#keyword').val('${boardVO.getKeyword()}');
+    $('#startDate').val('${boardVO.getStartDate()}');
+    $('#endDate').val('${boardVO.getEndDate()}');
+
     $('#btnWrite').click(function(){
     	location.href = '/write?page=' + page + '&perPageNum=' + perPageNum + '&searchOption=' + searchOption + '&keyword=' + keyword + '&startDate=' + startDate + '&endDate=' + endDate;
     });
     
+    setFormData();
+	getContents();
+    getPagination();
 });
 </script>
