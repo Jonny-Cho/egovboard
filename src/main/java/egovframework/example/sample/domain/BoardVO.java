@@ -1,6 +1,6 @@
 package egovframework.example.sample.domain;
 
-public class BoardVO extends PageVO{
+public class BoardVo extends PageVo{
 	
 	private String bid;
 	private String busername;

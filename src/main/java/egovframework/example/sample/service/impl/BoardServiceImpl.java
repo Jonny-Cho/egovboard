@@ -5,8 +5,8 @@ import java.text.MessageFormat;
 
 import org.springframework.stereotype.Service;
 
-import egovframework.example.sample.domain.BoardVO;
-import egovframework.example.sample.domain.PageVO;
+import egovframework.example.sample.domain.BoardVo;
+import egovframework.example.sample.domain.PageVo;
 import egovframework.example.sample.service.BoardService;
 import egovframework.example.sample.util.HttpUtil;
 
@@ -14,16 +14,16 @@ import egovframework.example.sample.util.HttpUtil;
 public class BoardServiceImpl implements BoardService {
 	
 	@Override
-	public int selectBoardListCount(PageVO pageVO) throws NumberFormatException, IOException {
+	public int selectBoardListCount(PageVo pageVo) throws NumberFormatException, IOException {
 		String url = MessageFormat.format("http://localhost:8080/selectBoardListCount?searchOption={0}&keyword={1}&startDate={2}&endDate={3}"
-				, new Object[] { pageVO.getSearchOption(), pageVO.getKeyword(), pageVO.getStartDate(), pageVO.getEndDate() });
+				, new Object[] { pageVo.getSearchOption(), pageVo.getKeyword(), pageVo.getStartDate(), pageVo.getEndDate() });
 		return Integer.parseInt(HttpUtil.get(url));
 	}
 	
 	@Override
-	public String selectBoardList(PageVO pageVO) throws IOException {
+	public String selectBoardList(PageVo pageVo) throws IOException {
 		String url = MessageFormat.format("http://localhost:8080/board?page={0}&perPageNum={1}&searchOption={2}&keyword={3}&startDate={4}&endDate={5}"
-				, new Object[] { pageVO.getPage() , pageVO.getPerPageNum() , pageVO.getSearchOption(), pageVO.getKeyword(), pageVO.getStartDate(), pageVO.getEndDate() });
+				, new Object[] { pageVo.getPage() , pageVo.getPerPageNum() , pageVo.getSearchOption(), pageVo.getKeyword(), pageVo.getStartDate(), pageVo.getEndDate() });
 		return HttpUtil.get(url);
 	}
 	
@@ -33,13 +33,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public String insertBoard(BoardVO boardVO) throws IOException {
-		return HttpUtil.post("http://localhost:8080/board", boardVO);
+	public String insertBoard(BoardVo boardVo) throws IOException {
+		return HttpUtil.post("http://localhost:8080/board", boardVo);
 	}
 	
 	@Override
-	public String updateBoard(BoardVO boardVO) throws IOException {
-		return HttpUtil.put("http://localhost:8080/board", boardVO);
+	public String updateBoard(BoardVo boardVo) throws IOException {
+		return HttpUtil.put("http://localhost:8080/board", boardVo);
 	}
 	
 	@Override

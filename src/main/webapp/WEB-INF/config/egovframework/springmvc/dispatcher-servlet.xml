@@ -13,6 +13,19 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 	
+<!-- 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="webBindingInitializer">
+            <bean class="egovframework.example.cmmn.web.EgovBindingInitializer"/>
+        </property>
+	</bean> -->
+<!--     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="localeChangeInterceptor" />
+            </list>
+        </property>
+    </bean> -->
+	
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="cmmn/egovError"/>
         <property name="exceptionMappings">
@@ -50,6 +63,7 @@
 	<!-- <mvc:default-servlet-handler /> -->
 	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
 	<mvc:resources mapping="/front/**" location="/front/" />
-	
+
 	<mvc:annotation-driven/>
+
 </beans>

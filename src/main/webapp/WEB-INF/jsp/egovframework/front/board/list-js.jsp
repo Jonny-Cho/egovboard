@@ -3,18 +3,17 @@
 <script type="text/javascript">
 $(function(){
 	
-	var page = '${boardVO.getPage()}';
-	var perPageNum = '${boardVO.getPerPageNum()}';
-	var keyword = '${boardVO.getKeyword()}';
+	var page = '${boardVo.getPage()}';
+	var perPageNum = '${boardVo.getPerPageNum()}';
+	var keyword = '${boardVo.getKeyword()}';
 	var startPage = 1;
 	var endPage = 10;
 	var prev = false;
 	var next = true;
 	var displayPageNum = 10;
-	var searchOption = '${boardVO.getSearchOption()}';
-	
-	var startDate = '${boardVO.getStartDate()}';
-	var endDate = '${boardVO.getEndDate()}';
+	var searchOption = '${boardVo.getSearchOption()}';
+	var startDate = '${boardVo.getStartDate()}';
+	var endDate = '${boardVo.getEndDate()}';
 	
 	function getContents(){
 		
@@ -176,7 +175,7 @@ $(function(){
     function setFormData(){
     	searchOption = $('#searchOption').val();
     	
-    	startDate = $('#startDate').val();
+    	$('#startDate').val() === '' ? startDate = new Date('2019-01-01').yyyymmdd() : startDate = $('#startDate').val();
     	$('#endDate').val() === '' ? endDate = new Date().yyyymmdd() : endDate = $('#endDate').val();
 
     	keyword = $('#keyword').val();
@@ -236,10 +235,10 @@ $(function(){
 	};
     
     // default values
-    '${boardVO.getSearchOption()}'=== '' ? $('#searchOption').val('all') : $('#searchOption').val('${boardVO.getSearchOption()}');
-    $('#keyword').val('${boardVO.getKeyword()}');
-    $('#startDate').val('${boardVO.getStartDate()}');
-    $('#endDate').val('${boardVO.getEndDate()}');
+    '${boardVo.getSearchOption()}'=== '' ? $('#searchOption').val('all') : $('#searchOption').val('${boardVo.getSearchOption()}');
+    $('#keyword').val('${boardVo.getKeyword()}');
+    $('#startDate').val('${boardVo.getStartDate()}');
+    $('#endDate').val('${boardVo.getEndDate()}');
 
     $('#btnWrite').click(function(){
     	location.href = '/write?page=' + page + '&perPageNum=' + perPageNum + '&searchOption=' + searchOption + '&keyword=' + keyword + '&startDate=' + startDate + '&endDate=' + endDate;

@@ -1,6 +1,6 @@
 package egovframework.example.sample.domain;
 
-public class PageVO {
+public class PageVo {
 	private int page = 1;
 	private int perPageNum = 20;
 	private String searchOption;

@@ -4,7 +4,7 @@
 <script>
     $(function(){
     	
-    	var parameters = '?page=${boardVO.getPage()}&perPageNum=${boardVO.getPerPageNum()}&searchOption=${boardVO.getSearchOption()}&keyword=${boardVO.getKeyword()}&startDate=${boardVO.getStartDate()}&endDate=${boardVO.getEndDate()}';
+    	var parameters = '?page=${boardVo.getPage()}&perPageNum=${boardVo.getPerPageNum()}&searchOption=${boardVo.getSearchOption()}&keyword=${boardVo.getKeyword()}&startDate=${boardVo.getStartDate()}&endDate=${boardVo.getEndDate()}';
     	
         // 내용 표시
         $.ajax({

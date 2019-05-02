@@ -2,9 +2,8 @@
 <%@ taglib prefix="c"     uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="container">
-	
 	<form id="formTarget" class="form-horizontal low">
-		<div class="form-group col-sm-2">
+		<div class="form-group col-sm-3">
 			<select class="form-control" id="searchOption">
 				<option value="username">작성자</option>
 				<option value="title">제목</option>
@@ -34,7 +33,7 @@
 				readonly
 				/>
 		</div>
-		<div class="form-group col-sm-2">
+		<div class="form-group col-sm-1">
 			<input id="btnSearch" type="submit" value="검색" class="form-control" />
 		</div>
 	</form>

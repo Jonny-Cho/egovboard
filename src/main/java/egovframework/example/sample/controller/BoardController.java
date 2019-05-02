@@ -26,7 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import egovframework.example.sample.domain.BoardVO;
+import egovframework.example.sample.domain.BoardVo;
 import egovframework.example.sample.service.BoardService;
 
 @Controller
@@ -38,9 +38,9 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping("/list")
-    public String boardList(BoardVO boardVO, Model model) throws IOException{
+    public String boardList(BoardVo boardVo, Model model) throws IOException{
 		logger.info("boardList()");
-		logger.info(boardVO.toString());
+		logger.info(boardVo.toString());
 		
 		model.addAttribute("strTitle", "게시글 목록");
 		
@@ -48,9 +48,9 @@ public class BoardController {
     }
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 	@GetMapping("/list/{bid}")
-	public String boardDetail(@PathVariable String bid, BoardVO boardVO, Model model) throws IOException {
+	public String boardDetail(@PathVariable String bid, BoardVo boardVo, Model model) throws IOException {
 		logger.info("BoardDetail()");
-		logger.info(boardVO.toString());
+		logger.info(boardVo.toString());
 		
 		model.addAttribute("bid", bid);
 		model.addAttribute("strTitle", bid + " 번 게시글");
@@ -59,9 +59,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("/write")
-	public String writeBoard(BoardVO boardVO, Model model) throws IOException {
+	public String writeBoard(BoardVo boardVo, Model model) throws IOException {
 		logger.info("writeBoard()");
-		logger.info(boardVO.toString());
+		logger.info(boardVo.toString());
 		
 		model.addAttribute("strTitle", "글쓰기");
 		
@@ -69,9 +69,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("/update/{bid}")
-	public String updateBoard(@PathVariable String bid, BoardVO boardVO, Model model) throws IOException {
+	public String updateBoard(@PathVariable String bid, BoardVo boardVo, Model model) throws IOException {
 		logger.info("updateBoard(), bid = " + bid);
-		logger.info(boardVO.toString());
+		logger.info(boardVo.toString());
 		
 		model.addAttribute("bid", bid);
 		model.addAttribute("strTitle", "수정하기");

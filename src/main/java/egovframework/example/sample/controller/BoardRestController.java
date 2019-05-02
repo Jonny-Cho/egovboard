@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import egovframework.example.sample.domain.BoardVO;
-import egovframework.example.sample.domain.PageVO;
+import egovframework.example.sample.domain.BoardVo;
+import egovframework.example.sample.domain.PageVo;
 import egovframework.example.sample.service.BoardService;
 
 @RestController
@@ -26,17 +26,17 @@ public class BoardRestController {
 	
 	// 총 게시글 수 요청 메서드
 	@GetMapping("/countTotalBoard")
-	public int countTotalBoard(PageVO pageVO) throws Exception{
+	public int countTotalBoard(PageVo pageVo) throws Exception{
 		logger.info("countTotalBoard()");
-		logger.info(pageVO.toString());
-		return boardService.selectBoardListCount(pageVO);
+		logger.info(pageVo.toString());
+		return boardService.selectBoardListCount(pageVo);
 	}
 	
 	@GetMapping(value="/board", produces = "application/json; charset=utf8")
-	public String getBoardList(PageVO pageVO) throws Exception {
+	public String getBoardList(PageVo pageVo) throws Exception {
 		logger.info("getBoardList()");
-		logger.info(pageVO.toString());
-		return boardService.selectBoardList(pageVO);
+		logger.info(pageVo.toString());
+		return boardService.selectBoardList(pageVo);
 	}
 	
 	@GetMapping(value="/board/{bid}", produces = "application/json; charset=utf8")
@@ -46,17 +46,17 @@ public class BoardRestController {
 	}
 	
 	@PostMapping(value="/board", produces = "application/json; charset=utf8")
-	public String createBoard(@RequestBody BoardVO boardVO) throws Exception {
+	public String createBoard(@RequestBody BoardVo boardVo) throws Exception {
 		logger.info("createBoard()");
-		logger.info(boardVO.toString());
-		return boardService.insertBoard(boardVO);
+		logger.info(boardVo.toString());
+		return boardService.insertBoard(boardVo);
 	}
 	
 	@PutMapping(value="/board", produces = "application/json; charset=utf8")
-	public String updateBoard(@RequestBody BoardVO boardVO) throws Exception {
+	public String updateBoard(@RequestBody BoardVo boardVo) throws Exception {
 		logger.info("updateBoard()");
-		logger.info(boardVO.toString());
-		return boardService.updateBoard(boardVO);
+		logger.info(boardVo.toString());
+		return boardService.updateBoard(boardVo);
 	}
 	
 	@DeleteMapping(value="/board/{bid}", produces = "application/json; charset=utf8")
