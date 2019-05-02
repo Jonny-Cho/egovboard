@@ -16,7 +16,6 @@
 package egovframework.example.sample.util;
 import java.io.IOException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import okhttp3.MediaType;
@@ -27,14 +26,9 @@ import okhttp3.Response;
 
 @Component
 public class HttpUtil {
-	public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+	public static MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 	
-	public static OkHttpClient client;
-	
-	@Autowired
-	public void setOkHttpClient(OkHttpClient okHttpClient) {
-		client = okHttpClient;
-	}
+	public static OkHttpClient client = new OkHttpClient();
 	
 	public static String get(String url) throws IOException {
 		Request request = new Request.Builder()

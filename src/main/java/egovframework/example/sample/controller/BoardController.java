@@ -23,8 +23,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import egovframework.example.sample.domain.BoardVo;
 import egovframework.example.sample.service.BoardService;
@@ -37,7 +37,7 @@ public class BoardController {
 	@Resource(name = "boardService")
 	private BoardService boardService;
 	
-	@GetMapping("/list")
+	@RequestMapping("/list")
     public String boardList(BoardVo boardVo, Model model) throws IOException{
 		logger.info("boardList()");
 		logger.info(boardVo.toString());
@@ -47,7 +47,7 @@ public class BoardController {
         return "board/list.page";
     }
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-	@GetMapping("/list/{bid}")
+	@RequestMapping("/list/{bid}")
 	public String boardDetail(@PathVariable String bid, BoardVo boardVo, Model model) throws IOException {
 		logger.info("BoardDetail()");
 		logger.info(boardVo.toString());
@@ -58,7 +58,7 @@ public class BoardController {
 		return "board/content.page";
 	}
 	
-	@GetMapping("/write")
+	@RequestMapping("/write")
 	public String writeBoard(BoardVo boardVo, Model model) throws IOException {
 		logger.info("writeBoard()");
 		logger.info(boardVo.toString());
@@ -68,7 +68,7 @@ public class BoardController {
 		return "board/write.page";
 	}
 	
-	@GetMapping("/update/{bid}")
+	@RequestMapping("/update/{bid}")
 	public String updateBoard(@PathVariable String bid, BoardVo boardVo, Model model) throws IOException {
 		logger.info("updateBoard(), bid = " + bid);
 		logger.info(boardVo.toString());

@@ -4,7 +4,6 @@
 <script>
 $(function(){
 	
-	var parameters = '?page=${boardVo.getPage()}&perPageNum=${boardVo.getPerPageNum()}&searchOption=${boardVo.getSearchOption()}&keyword=${boardVo.getKeyword()}&startDate=${boardVo.getStartDate()}&endDate=${boardVo.getEndDate()}';
 	
 	$('#btnPost').click(function(){
 		var busername = $('#bUsername').val();
@@ -27,7 +26,7 @@ $(function(){
 			 	contentType : 'application/json; charset=UTF-8'
 			})
 			.done(function(board){
-				location.href = '/list';
+				submitHiddenForm('/list');
 			})
 			.fail(function(){
 				alert('failed');
@@ -37,7 +36,17 @@ $(function(){
 	
     // 취소 버튼
     $('#btnCancel').click(function(){
-    	location.href = '/list' + parameters;
+    	submitHiddenForm('/list');
     });
+    
+	function submitHiddenForm(url){
+    	$('#hiddenPage').val('${boardVo.getPage()}');
+    	$('#hiddenPerPageNum').val('${boardVo.getPerPageNum()}');
+    	$('#hiddenSearchOption').val('${boardVo.getSearchOption()}');
+    	$('#hiddenKeyword').val('${boardVo.getKeyword()}');
+    	$('#hiddenStartDate').val('${boardVo.getStartDate()}');
+    	$('#hiddenEndDate').val('${boardVo.getEndDate()}');
+    	$('#hiddenForm').attr('action', url).submit();
+    }
 });
 </script>

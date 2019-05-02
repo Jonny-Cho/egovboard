@@ -17,4 +17,13 @@
 
 	<a id="btnPost" class="btn btn-default">글쓰기</a>
 	<a id="btnCancel" class="btn btn-default" role="button">취소</a>
+	
+	<form id="hiddenForm" method="POST">
+		<input type="hidden" id="hiddenPage" name="page"/>
+		<input type="hidden" id="hiddenPerPageNum" name="perPageNum"/>
+		<input type="hidden" id="hiddenSearchOption" name="searchOption"/>
+		<input type="hidden" id="hiddenKeyword" name="keyword"/>
+		<input type="hidden" id="hiddenStartDate" name="startDate"/>
+		<input type="hidden" id="hiddenEndDate" name="endDate"/>
+	</form>
 </div>

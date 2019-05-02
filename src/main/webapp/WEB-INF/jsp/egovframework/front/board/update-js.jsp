@@ -4,8 +4,6 @@
 <script>
     $(function(){
     	
-    	var parameters = '?page=${boardVo.getPage()}&perPageNum=${boardVo.getPerPageNum()}&searchOption=${boardVo.getSearchOption()}&keyword=${boardVo.getKeyword()}&startDate=${boardVo.getStartDate()}&endDate=${boardVo.getEndDate()}';
-    	
         // 내용 표시
         $.ajax({
             url: '/board/${bid}',
@@ -48,7 +46,7 @@
 		        })
 		        .done(function(){
 		        	alert('수정이 완료되었습니다');
-		        	location.href='/list/${bid}' + parameters;
+		        	submitHiddenForm('/list/${bid}');
 		        })
 		        .fail(function(){
 		        	alert('수정에 실패했습니다');
@@ -71,13 +69,23 @@
                 alert('삭제에 실패했습니다. 게시판 목록으로 이동합니다');
             })
             .always(function(){
-                location.href='/list' + parameters;
+                submitHiddenForm('/list');
             }); // ajax end
 		});
         
         // 취소 버튼
         $('#btnCancel').click(function(){
-        	location.href = '/list/${bid}' + parameters;
+        	submitHiddenForm('/list/${bid}');
         });
+        
+    	function submitHiddenForm(url){
+        	$('#hiddenPage').val('${boardVo.getPage()}');
+        	$('#hiddenPerPageNum').val('${boardVo.getPerPageNum()}');
+        	$('#hiddenSearchOption').val('${boardVo.getSearchOption()}');
+        	$('#hiddenKeyword').val('${boardVo.getKeyword()}');
+        	$('#hiddenStartDate').val('${boardVo.getStartDate()}');
+        	$('#hiddenEndDate').val('${boardVo.getEndDate()}');
+        	$('#hiddenForm').attr('action', url).submit();
+        }
     });
 </script>

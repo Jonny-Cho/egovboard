@@ -50,7 +50,6 @@ $(function(){
 	            // tbody에 tr넣기
 	            tbodyTarget.append(newTr);
 	        }
-	        // table에 tbody넣기
 	        moveToContent();
 	    })
 	    .fail(function(){
@@ -61,8 +60,21 @@ $(function(){
     function moveToContent (){
         $('#tbodyTarget').delegate("tr", "click", function(){
         	var bid = $(this).find('#bid').text();
-        	location.href = '/list/' + bid + '?page=' + page + '&perPageNum=' + perPageNum + '&searchOption=' + searchOption + '&keyword=' + keyword + '&startDate=' + startDate + '&endDate=' + endDate;
+
+        	setFormData();
+        	// form post submit
+        	submitHiddenForm('/list/' + bid);
         });
+    }
+    
+    function submitHiddenForm(url){
+    	$('#hiddenPage').val(page);
+    	$('#hiddenPerPageNum').val(perPageNum);
+    	$('#hiddenSearchOption').val(searchOption);
+    	$('#hiddenKeyword').val(keyword);
+    	$('#hiddenStartDate').val(startDate);
+    	$('#hiddenEndDate').val(endDate);
+    	$('#hiddenForm').attr('action', url).submit();
     }
     
     function getPagination(){
@@ -235,13 +247,14 @@ $(function(){
 	};
     
     // default values
-    '${boardVo.getSearchOption()}'=== '' ? $('#searchOption').val('all') : $('#searchOption').val('${boardVo.getSearchOption()}');
+    '${boardVo.getSearchOption()}' === '' ? $('#searchOption').val('all') : $('#searchOption').val('${boardVo.getSearchOption()}');
     $('#keyword').val('${boardVo.getKeyword()}');
     $('#startDate').val('${boardVo.getStartDate()}');
     $('#endDate').val('${boardVo.getEndDate()}');
 
     $('#btnWrite').click(function(){
-    	location.href = '/write?page=' + page + '&perPageNum=' + perPageNum + '&searchOption=' + searchOption + '&keyword=' + keyword + '&startDate=' + startDate + '&endDate=' + endDate;
+    	setFormData();
+    	submitHiddenForm('/write');
     });
     
     setFormData();

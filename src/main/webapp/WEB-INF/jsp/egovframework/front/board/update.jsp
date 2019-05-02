@@ -18,6 +18,15 @@
 		<textarea name="bContent" id="bContent" class="form-control"></textarea>
 	</div>
 
+   	<form id="hiddenForm" method="POST">
+		<input type="hidden" id="hiddenPage" name="page"/>
+		<input type="hidden" id="hiddenPerPageNum" name="perPageNum"/>
+		<input type="hidden" id="hiddenSearchOption" name="searchOption"/>
+		<input type="hidden" id="hiddenKeyword" name="keyword"/>
+		<input type="hidden" id="hiddenStartDate" name="startDate"/>
+		<input type="hidden" id="hiddenEndDate" name="endDate"/>
+	</form>
+
 	<a id="btnUpdate" class="btn btn-default">수정하기</a>
 	<a id="btnCancel" class="btn btn-default" role="button">취소</a>
 	<a id="btnDelete" class="btn btn-default">삭제하기</a>
